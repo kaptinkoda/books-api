@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "USqf6woQEnuUcxj2FgGs7+f/6zmHJCiMV3UKIeZjTn+KsojSi6vBlXrCUuAviuscNR0/UMYJK6QGxQG6FS2NRA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\KAPTIN\\source\\repos\\books-api\\books-api\\books-api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\KAPTIN\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.14\\microsoft.netcore.app.host.win-x64.3.1.14.nupkg.sha512"
+  ],
+  "logs": []
+}
