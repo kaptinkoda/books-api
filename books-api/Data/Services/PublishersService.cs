@@ -16,7 +16,7 @@ namespace books_api.Data.Services
             _context = context;
         }
 
-        public Publisher AddAuthor(PublisherVM author)
+        public Publisher AddPublisher(PublisherVM author)
         {
             var _publisher = new Publisher
             {
@@ -43,6 +43,30 @@ namespace books_api.Data.Services
             }).FirstOrDefault();
 
             return _publisherWithBooks;
+        }
+
+        public List<Publisher> GetAllPublishers(string orderBy, string searchString)
+        {
+            var _publishers = _context.Publishers.OrderBy(n => n.Name).ToList();
+
+            if (!string.IsNullOrEmpty(orderBy))
+            {
+                switch (orderBy)
+                {
+                    case "name_desc":
+                        _publishers = _publishers.OrderByDescending(n => n.Name).ToList();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                _publishers = _publishers.Where(n => n.Name.Contains(searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            }
+
+            return _publishers;
         }
 
         public void DeletePublisherById(int id)
