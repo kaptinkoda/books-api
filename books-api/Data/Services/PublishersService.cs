@@ -1,4 +1,5 @@
 ﻿using books_api.Data.Models;
+using books_api.Data.Paging;
 using books_api.Data.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace books_api.Data.Services
             return _publisherWithBooks;
         }
 
-        public List<Publisher> GetAllPublishers(string orderBy, string searchString)
+        public List<Publisher> GetAllPublishers(string orderBy, string searchString, int? pageNumber)
         {
             var _publishers = _context.Publishers.OrderBy(n => n.Name).ToList();
 
@@ -65,6 +66,9 @@ namespace books_api.Data.Services
             {
                 _publishers = _publishers.Where(n => n.Name.Contains(searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
             }
+
+            int pageSize = 2;
+            _publishers = PaginatedList<Publisher>.Create(_publishers.AsQueryable(), pageNumber ?? 1, pageSize);
 
             return _publishers;
         }
